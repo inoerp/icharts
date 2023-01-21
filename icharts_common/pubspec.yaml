@@ -1,0 +1,26 @@
+name: icharts_common
+version: 0.13.2
+description: A common library for charting packages. Forked from google/charts, and updated to latest SDK and packages.
+homepage: https://github.com/inoerp/icharts
+
+environment:
+  sdk: ">=2.17.1 <3.0.0"
+  flutter: ">=2.5.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+  collection: ^1.14.5
+  intl: ^0.18.0
+  logging: ^1.0.2
+  meta: ^1.1.1
+  vector_math: ^2.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  mockito: ^5.0.0
