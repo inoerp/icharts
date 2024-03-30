@@ -1,5 +1,5 @@
 name: icharts_common
-version: 0.13.2
+version: 0.13.5
 description: A common library for charting packages. Forked from google/charts, and updated to latest SDK and packages.
 homepage: https://github.com/inoerp/icharts
 

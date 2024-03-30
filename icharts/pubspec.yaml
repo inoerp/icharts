@@ -1,5 +1,5 @@
 name: icharts
-version: 0.13.4
+version: 0.13.5
 description: Material Design charting library for flutter.
   Forked from google/charts and updated to the latest SDK and packages.
   Some charts have been modified for large-screen display.
@@ -19,7 +19,7 @@ dependencies:
   intl: ^0.19.0
   logging: ^1.0.2
   meta: ^1.1.1
-  icharts_common: ^0.13.2
+  icharts_common: ^0.13.5
 
 
 
