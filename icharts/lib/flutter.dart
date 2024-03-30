@@ -121,7 +121,6 @@ export 'package:icharts_common/icharts_common.dart'
         PointRendererDecorator,
         PointRendererElement,
         PointSymbolRenderer,
-        QuantumPalette,
         RangeAnnotationAxisType,
         RangeAnnotationSegment,
         RectSymbolRenderer,

@@ -44,10 +44,10 @@ import 'tick_provider.dart' show BaseTickProvider, TickHint;
 /// still selecting "nice" ticks values.
 class NumericTickProvider extends BaseTickProvider<num> {
   /// Used to determine the automatic tick count calculation.
-  static const MIN_DIPS_BETWEEN_TICKS = 25;
+  static const minDipsBetweenTicks = 25;
 
   /// Potential steps available to the baseTen value of the data.
-  static const DEFAULT_STEPS = [
+  static const defaultSteps = [
     0.01,
     0.02,
     0.025,
@@ -106,7 +106,7 @@ class NumericTickProvider extends BaseTickProvider<num> {
   int? _desiredMinTickCount;
 
   /// Allowed steps the tick provider can choose from.
-  var _allowedSteps = DEFAULT_STEPS;
+  var _allowedSteps = defaultSteps;
 
   /// Convert input data units to the desired units on the axis.
   /// If not set no conversion will take place.
@@ -151,10 +151,9 @@ class NumericTickProvider extends BaseTickProvider<num> {
   /// [minTickCount] The min tick count must be greater than 1.
   void setTickCount(int maxTickCount, int minTickCount) {
     // Don't allow a single tick, it doesn't make sense. so tickCount > 1
-    if (maxTickCount != null && maxTickCount > 1) {
+    if (maxTickCount > 1) {
       _desiredMaxTickCount = maxTickCount;
-      if (minTickCount != null &&
-          minTickCount > 1 &&
+      if (minTickCount > 1 &&
           minTickCount <= _desiredMaxTickCount!) {
         _desiredMinTickCount = minTickCount;
       } else {
@@ -180,7 +179,7 @@ class NumericTickProvider extends BaseTickProvider<num> {
   ///
   /// [steps] allowed step sizes in the [1, 10) range.
   set allowedSteps(List<double> steps) {
-    assert(steps != null && steps.isNotEmpty);
+    assert(steps.isNotEmpty);
     steps.sort();
 
     final stepSet = Set.of(steps);
@@ -403,7 +402,7 @@ class NumericTickProvider extends BaseTickProvider<num> {
           !(low < 0 &&
               high > 0 &&
               (negativeRegionCount == 0 || positiveRegionCount == 0)),
-          'Numeric tick provider cannot generate ${tickCount} '
+          'Numeric tick provider cannot generate $tickCount '
           'ticks when the axis range contains both positive and negative '
           'values. A minimum of three ticks are required to include zero.');
 
@@ -494,7 +493,7 @@ class NumericTickProvider extends BaseTickProvider<num> {
       tmpMinNumMajorTicks = max(_desiredMinTickCount!, absoluteMinTicks);
       tmpMaxNumMajorTicks = max(_desiredMaxTickCount!, tmpMinNumMajorTicks);
     } else {
-      final minPixelsPerTick = MIN_DIPS_BETWEEN_TICKS.toDouble();
+      final minPixelsPerTick = minDipsBetweenTicks.toDouble();
       tmpMinNumMajorTicks = absoluteMinTicks;
       tmpMaxNumMajorTicks =
           max(absoluteMinTicks, (rangeWidth / minPixelsPerTick).floor());

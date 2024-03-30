@@ -1,9 +1,15 @@
+# 0.13.4
+* Bug fixes
+
+# 0.13.3
+* Bug fixes 
+
 # 0.13.2
 * Removed dependencies to all old project
 
 # 0.13.0
 * Updated to latest version of SDK and intl
-* 
+
 # 0.12.0
 * Add functions to draw horizontal or vertical links onto the dart charts web canvas.
 * Add "preserveSelection" functionality to InitialSelection chart Behavior.

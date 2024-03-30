@@ -39,7 +39,7 @@ class TimeSeriesChart extends CartesianChart<DateTime> {
   ///
   /// [dateTimeFactory] allows specifying a factory that creates [DateTime] to
   /// be used for the time axis. If none specified, local date time is used.
-  TimeSeriesChart(
+  const TimeSeriesChart(
     List<common.Series<dynamic, DateTime>> seriesList, {
     bool? animate,
     Duration? animationDuration,
@@ -79,7 +79,7 @@ class TimeSeriesChart extends CartesianChart<DateTime> {
     // Optionally create primary and secondary measure axes if the chart was
     // configured with them. If no axes were configured, then the chart will
     // use its default types (usually a numeric axis).
-    return new common.TimeSeriesChart(
+    return common.TimeSeriesChart(
         layoutConfig: layoutConfig?.commonLayoutConfig,
         primaryMeasureAxis: primaryMeasureAxis?.createAxis(),
         secondaryMeasureAxis: secondaryMeasureAxis?.createAxis(),
@@ -92,6 +92,6 @@ class TimeSeriesChart extends CartesianChart<DateTime> {
   void addDefaultInteractions(List<ChartBehavior> behaviors) {
     super.addDefaultInteractions(behaviors);
 
-    behaviors.add(new LinePointHighlighter<DateTime>());
+    behaviors.add(LinePointHighlighter<DateTime>());
   }
 }

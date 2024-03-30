@@ -15,7 +15,7 @@
 
 import 'package:icharts_common/icharts_common.dart' as common
     show Legend, LegendState, SeriesLegend;
-import 'package:flutter/widgets.dart' show BuildContext, hashValues, Widget;
+import 'package:flutter/widgets.dart' show BuildContext, Widget;
 import 'legend.dart';
 import 'legend_entry_layout.dart';
 import 'legend_layout.dart';
@@ -70,15 +70,17 @@ abstract class BaseLegendContentBuilder implements LegendContentBuilder {
 /// [legendLayout] custom strategy for creating legend widget from list of
 /// widgets that represent a legend entry.
 class TabularLegendContentBuilder extends BaseLegendContentBuilder {
+  @override
   final LegendEntryLayout legendEntryLayout;
+  @override
   final LegendLayout legendLayout;
 
   TabularLegendContentBuilder(
       {LegendEntryLayout? legendEntryLayout, LegendLayout? legendLayout})
-      : this.legendEntryLayout =
+      : legendEntryLayout =
             legendEntryLayout ?? const SimpleLegendEntryLayout(),
-        this.legendLayout =
-            legendLayout ?? new TabularLegendLayout.horizontalFirst();
+        legendLayout =
+            legendLayout ?? TabularLegendLayout.horizontalFirst();
 
   @override
   bool operator ==(Object o) {
@@ -88,5 +90,5 @@ class TabularLegendContentBuilder extends BaseLegendContentBuilder {
   }
 
   @override
-  int get hashCode => hashValues(legendEntryLayout, legendLayout);
+  int get hashCode => Object.hash(legendEntryLayout, legendLayout);
 }

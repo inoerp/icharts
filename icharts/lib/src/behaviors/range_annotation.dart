@@ -25,7 +25,6 @@ import 'package:icharts_common/icharts_common.dart' as common
         RangeAnnotation,
         TextStyleSpec;
 import 'package:collection/collection.dart' show ListEquality;
-import 'package:flutter/widgets.dart' show hashValues;
 import 'package:meta/meta.dart' show immutable;
 
 import 'chart_behavior.dart' show ChartBehavior, GestureType;
@@ -38,7 +37,8 @@ import 'chart_behavior.dart' show ChartBehavior, GestureType;
 /// range.
 @immutable
 class RangeAnnotation<D> extends ChartBehavior<D> {
-  final desiredGestures = new Set<GestureType>();
+  @override
+  final desiredGestures = <GestureType>{};
 
   /// List of annotations to render on the chart.
   final List<common.AnnotationSegment<Object>> annotations;
@@ -79,12 +79,12 @@ class RangeAnnotation<D> extends ChartBehavior<D> {
       this.extendAxis,
       this.labelPadding,
       this.layoutPaintOrder})
-      : this.defaultColor =
+      : defaultColor =
             defaultColor ?? common.MaterialPalette.gray.shade100;
 
   @override
   common.RangeAnnotation<D> createCommonBehavior() =>
-      new common.RangeAnnotation<D>(annotations,
+      common.RangeAnnotation<D>(annotations,
           defaultColor: defaultColor,
           defaultLabelAnchor: defaultLabelAnchor,
           defaultLabelDirection: defaultLabelDirection,
@@ -103,7 +103,7 @@ class RangeAnnotation<D> extends ChartBehavior<D> {
   @override
   bool operator ==(Object o) {
     return o is RangeAnnotation &&
-        new ListEquality().equals(annotations, o.annotations) &&
+        const ListEquality().equals(annotations, o.annotations) &&
         defaultColor == o.defaultColor &&
         extendAxis == o.extendAxis &&
         defaultLabelAnchor == o.defaultLabelAnchor &&
@@ -115,7 +115,7 @@ class RangeAnnotation<D> extends ChartBehavior<D> {
   }
 
   @override
-  int get hashCode => hashValues(
+  int get hashCode => Object.hash(
       annotations,
       defaultColor,
       extendAxis,

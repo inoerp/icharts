@@ -40,7 +40,7 @@ abstract class CartesianChart<D> extends BaseChart<D> {
   final LinkedHashMap<String, common.NumericAxisSpec>? disjointMeasureAxes;
   final bool? flipVerticalAxis;
 
-  CartesianChart(
+  const CartesianChart(
     List<common.Series<dynamic, D>> seriesList, {
     bool? animate,
     Duration? animationDuration,
@@ -107,7 +107,7 @@ abstract class CartesianChart<D> extends BaseChart<D> {
   @protected
   LinkedHashMap<String, common.NumericAxis>? createDisjointMeasureAxes() {
     if (disjointMeasureAxes != null) {
-      final disjointAxes = new LinkedHashMap<String, common.NumericAxis>();
+      final disjointAxes = LinkedHashMap<String, common.NumericAxis>();
 
       disjointMeasureAxes!
           .forEach((String axisId, common.NumericAxisSpec axisSpec) {

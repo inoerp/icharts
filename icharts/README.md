@@ -4,11 +4,11 @@
 
 This project is forked from google/charts and updated to run on the latest SDKs and packages.
 
-[![pub package](https://img.shields.io/pub/v/charts_flutter.svg)](https://pub.dartlang.org/packages/icharts)
-
 Material Design data visualization library written natively in Dart.
 
 ## Supported charts
+
+[Demos](https://flutter-icharts.github.io/#/)  are available for a few sample charts.
 
 See the [online gallery](https://google.github.io/charts/flutter/gallery.html).
 

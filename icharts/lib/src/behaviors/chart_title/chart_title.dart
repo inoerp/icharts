@@ -22,7 +22,6 @@ import 'package:icharts_common/icharts_common.dart' as common
         MaxWidthStrategy,
         OutsideJustification,
         TextStyleSpec;
-import 'package:flutter/widgets.dart' show hashValues;
 import 'package:meta/meta.dart' show immutable;
 
 import '../chart_behavior.dart' show ChartBehavior, GestureType;
@@ -30,7 +29,8 @@ import '../chart_behavior.dart' show ChartBehavior, GestureType;
 /// Chart behavior that adds a ChartTitle widget to a chart.
 @immutable
 class ChartTitle<D> extends ChartBehavior<D> {
-  final desiredGestures = new Set<GestureType>();
+  @override
+  final desiredGestures = <GestureType>{};
 
   final common.BehaviorPosition? behaviorPosition;
 
@@ -144,7 +144,7 @@ class ChartTitle<D> extends ChartBehavior<D> {
   });
 
   @override
-  common.ChartTitle<D> createCommonBehavior() => new common.ChartTitle<D>(title,
+  common.ChartTitle<D> createCommonBehavior() => common.ChartTitle<D>(title,
       behaviorPosition: behaviorPosition,
       innerPadding: innerPadding,
       layoutMinSize: layoutMinSize,
@@ -184,7 +184,7 @@ class ChartTitle<D> extends ChartBehavior<D> {
 
   @override
   int get hashCode {
-    return hashValues(
+    return Object.hash(
         behaviorPosition,
         layoutMinSize,
         layoutPreferredSize,

@@ -21,7 +21,6 @@ import 'package:icharts_common/icharts_common.dart' as common
         LinePointHighlighterFollowLineType,
         SelectionModelType,
         SymbolRenderer;
-import 'package:flutter/widgets.dart' show hashValues;
 import 'package:meta/meta.dart' show immutable;
 
 import 'chart_behavior.dart' show ChartBehavior, GestureType;
@@ -35,7 +34,8 @@ import 'chart_behavior.dart' show ChartBehavior, GestureType;
 /// and expand selection out to the domain value.
 @immutable
 class LinePointHighlighter<D> extends ChartBehavior<D> {
-  final desiredGestures = new Set<GestureType>();
+  @override
+  final desiredGestures = <GestureType>{};
 
   final common.SelectionModelType? selectionModelType;
 
@@ -84,7 +84,7 @@ class LinePointHighlighter<D> extends ChartBehavior<D> {
 
   @override
   common.LinePointHighlighter<D> createCommonBehavior() =>
-      new common.LinePointHighlighter<D>(
+      common.LinePointHighlighter<D>(
         selectionModelType: selectionModelType,
         defaultRadiusPx: defaultRadiusPx,
         radiusPaddingPx: radiusPaddingPx,
@@ -109,13 +109,13 @@ class LinePointHighlighter<D> extends ChartBehavior<D> {
         showHorizontalFollowLine == o.showHorizontalFollowLine &&
         showVerticalFollowLine == o.showVerticalFollowLine &&
         selectionModelType == o.selectionModelType &&
-        new ListEquality().equals(dashPattern, o.dashPattern) &&
+        const ListEquality().equals(dashPattern, o.dashPattern) &&
         drawFollowLinesAcrossChart == o.drawFollowLinesAcrossChart;
   }
 
   @override
   int get hashCode {
-    return hashValues(
+    return Object.hash(
       selectionModelType,
       defaultRadiusPx,
       radiusPaddingPx,

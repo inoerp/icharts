@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:collection' show LinkedHashMap;
 import 'dart:math' show Point, Rectangle;
 
 import 'package:icharts_common/src/chart/common/chart_canvas.dart';
@@ -35,7 +34,7 @@ class LinkRenderer<D> extends BaseSeriesRenderer<D> {
   static const defaultRendererID = 'sankey';
 
   // List of renderer elements to be drawn on the canvas
-  final _seriesLinkMap = LinkedHashMap<String, List<LinkRendererElement>>();
+  final _seriesLinkMap = <String, List<LinkRendererElement>>{};
 
   /// Link Renderer Config
   final LinkRendererConfig<D> config;
@@ -54,7 +53,7 @@ class LinkRenderer<D> extends BaseSeriesRenderer<D> {
 
   @override
   void preprocessSeries(List<MutableSeries<D>> seriesList) {
-    seriesList.forEach((MutableSeries<D> series) {
+    for (var series in seriesList) {
       var elements = <LinkRendererElement>[];
       for (var linkIndex = 0; linkIndex < series.data.length; linkIndex++) {
         var element = LinkRendererElement(
@@ -64,16 +63,16 @@ class LinkRenderer<D> extends BaseSeriesRenderer<D> {
         elements.add(element);
       }
       series.setAttr(linkElementsKey, elements);
-    });
+    }
   }
 
   @override
   void update(List<ImmutableSeries<D>> seriesList, bool isAnimating) {
-    seriesList.forEach((ImmutableSeries<D> series) {
+    for (var series in seriesList) {
       var elementsList =
           series.getAttr(linkElementsKey) as List<LinkRendererElement>;
       _seriesLinkMap.putIfAbsent(series.id, () => elementsList);
-    });
+    }
   }
 
   @override
@@ -83,8 +82,9 @@ class LinkRenderer<D> extends BaseSeriesRenderer<D> {
   }
 
   void _drawAllLinks(List<LinkRendererElement> links, ChartCanvas canvas) {
-    links.forEach((element) =>
-        canvas.drawLink(element.link, element.orientation, element.fillColor));
+    for (var element in links) {
+      canvas.drawLink(element.link, element.orientation, element.fillColor);
+    }
   }
 
   @override

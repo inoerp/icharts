@@ -35,7 +35,7 @@ import '../selection_model_config.dart' show SelectionModelConfig;
 /// not expose a separate DateTimeComboChart because it would just be a copy of
 /// that chart.
 class NumericComboChart extends CartesianChart<num> {
-  NumericComboChart(
+  const NumericComboChart(
     List<common.Series<dynamic, num>> seriesList, {
     bool? animate,
     Duration? animationDuration,
@@ -70,7 +70,7 @@ class NumericComboChart extends CartesianChart<num> {
     // Optionally create primary and secondary measure axes if the chart was
     // configured with them. If no axes were configured, then the chart will
     // use its default types (usually a numeric axis).
-    return new common.NumericCartesianChart(
+    return common.NumericCartesianChart(
         layoutConfig: layoutConfig?.commonLayoutConfig,
         primaryMeasureAxis: primaryMeasureAxis?.createAxis(),
         secondaryMeasureAxis: secondaryMeasureAxis?.createAxis());
@@ -80,7 +80,7 @@ class NumericComboChart extends CartesianChart<num> {
 /// An ordinal combo chart supports rendering each series of data with different
 /// series renderers.
 class OrdinalComboChart extends CartesianChart<String> {
-  OrdinalComboChart(
+  const OrdinalComboChart(
     List<common.Series<dynamic, String>> seriesList, {
     bool? animate,
     Duration? animationDuration,
@@ -115,7 +115,7 @@ class OrdinalComboChart extends CartesianChart<String> {
     // Optionally create primary and secondary measure axes if the chart was
     // configured with them. If no axes were configured, then the chart will
     // use its default types (usually a numeric axis).
-    return new common.OrdinalCartesianChart(
+    return common.OrdinalCartesianChart(
         layoutConfig: layoutConfig?.commonLayoutConfig,
         primaryMeasureAxis: primaryMeasureAxis?.createAxis(),
         secondaryMeasureAxis: secondaryMeasureAxis?.createAxis());

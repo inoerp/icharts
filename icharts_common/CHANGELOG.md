@@ -1,6 +1,6 @@
 # 0.13.2
 * Bug fixes
-* 
+
 # 0.13.1
 * Bug fixes
 

@@ -12,7 +12,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import 'dart:collection' show LinkedHashMap;
 
 import 'package:meta/meta.dart';
 
@@ -121,7 +120,7 @@ List<SankeyNode<N, L>> _convertSankeyNodes<N, L, D>(
   List<SankeyNode<N, L>> graphNodes = [];
   var graphLinks = _convertSankeyLinks(links, sourceFn, targetFn);
   var nodeClassDomainFn = actOnNodeData<N, L, D>(nodeDomainFn)!;
-  var nodeMap = LinkedHashMap<D, SankeyNode<N, L>>();
+  var nodeMap = <D, SankeyNode<N, L>>{};
 
   for (var node in nodes) {
     nodeMap.putIfAbsent(

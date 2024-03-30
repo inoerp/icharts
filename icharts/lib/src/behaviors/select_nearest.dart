@@ -50,6 +50,7 @@ import 'chart_behavior.dart' show ChartBehavior, GestureType;
 /// removed.
 @immutable
 class SelectNearest<D> extends ChartBehavior<D> {
+  @override
   final Set<GestureType> desiredGestures;
 
   final common.SelectionModelType selectionModelType;
@@ -76,7 +77,7 @@ class SelectNearest<D> extends ChartBehavior<D> {
       bool selectClosestSeries = true,
       common.SelectionTrigger eventTrigger = common.SelectionTrigger.tap,
       int? maximumDomainDistancePx}) {
-    return new SelectNearest._internal(
+    return SelectNearest._internal(
         selectionModelType: selectionModelType,
         selectionMode: selectionMode,
         selectAcrossAllDrawAreaComponents: selectAcrossAllDrawAreaComponents,
@@ -88,10 +89,10 @@ class SelectNearest<D> extends ChartBehavior<D> {
 
   static Set<GestureType> _getDesiredGestures(
       common.SelectionTrigger eventTrigger) {
-    final desiredGestures = new Set<GestureType>();
+    final desiredGestures = <GestureType>{};
     switch (eventTrigger) {
       case common.SelectionTrigger.tap:
-        desiredGestures..add(GestureType.onTap);
+        desiredGestures.add(GestureType.onTap);
         break;
       case common.SelectionTrigger.tapAndDrag:
         desiredGestures
@@ -107,7 +108,7 @@ class SelectNearest<D> extends ChartBehavior<D> {
         break;
       case common.SelectionTrigger.hover:
       default:
-        desiredGestures..add(GestureType.onHover);
+        desiredGestures.add(GestureType.onHover);
         break;
     }
     return desiredGestures;
@@ -115,7 +116,7 @@ class SelectNearest<D> extends ChartBehavior<D> {
 
   @override
   common.SelectNearest<D> createCommonBehavior() {
-    return new common.SelectNearest<D>(
+    return common.SelectNearest<D>(
         selectionModelType: selectionModelType,
         eventTrigger: eventTrigger,
         selectionMode: selectionMode,
@@ -131,6 +132,7 @@ class SelectNearest<D> extends ChartBehavior<D> {
   @override
   String get role => 'SelectNearest-${selectionModelType.toString()}}';
 
+  @override
   bool operator ==(Object other) {
     if (other is SelectNearest) {
       return (selectionModelType == other.selectionModelType) &&
@@ -143,6 +145,7 @@ class SelectNearest<D> extends ChartBehavior<D> {
     }
   }
 
+  @override
   int get hashCode {
     int hashcode = selectionModelType.hashCode;
     hashcode = hashcode * 37 + eventTrigger.hashCode;

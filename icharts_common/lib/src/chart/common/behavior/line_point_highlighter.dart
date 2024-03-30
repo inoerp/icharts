@@ -207,7 +207,7 @@ class LinePointHighlighter<D> implements ChartBehavior<D> {
           ? detail.radiusPx!.toDouble() + radiusPaddingPx
           : defaultRadiusPx;
 
-      final pointKey = '${lineKey}::${detail.domain}::${detail.measure}';
+      final pointKey = '$lineKey::${detail.domain}::${detail.measure}';
 
       // If we already have a point for that key, use it.
       _AnimatedPoint<D> animatingPoint;
@@ -317,7 +317,7 @@ class _LinePointLayoutView<D> extends LayoutView {
     required this.drawFollowLinesAcrossChart,
   }) : layoutConfig = LayoutViewConfig(
             paintOrder: LayoutViewPaintOrder.linePointHighlighter,
-            position: LayoutPosition.DrawArea,
+            position: LayoutPosition.drawArea,
             positionOrder: layoutPaintOrder);
 
   set seriesPointMap(LinkedHashMap<String, _AnimatedPoint<D>>? value) {
@@ -336,8 +336,8 @@ class _LinePointLayoutView<D> extends LayoutView {
 
   @override
   void paint(ChartCanvas canvas, double animationPercent) {
-    final _seriesPointMap = this._seriesPointMap;
-    if (_seriesPointMap == null) {
+    final seriesPointMap = _seriesPointMap;
+    if (seriesPointMap == null) {
       return;
     }
 
@@ -345,17 +345,17 @@ class _LinePointLayoutView<D> extends LayoutView {
     if (animationPercent == 1.0) {
       final keysToRemove = <String>[];
 
-      _seriesPointMap.forEach((String key, _AnimatedPoint<D> point) {
+      seriesPointMap.forEach((String key, _AnimatedPoint<D> point) {
         if (point.animatingOut) {
           keysToRemove.add(key);
         }
       });
 
-      keysToRemove.forEach(_seriesPointMap.remove);
+      keysToRemove.forEach(seriesPointMap.remove);
     }
 
     final points = <_PointRendererElement<D>>[];
-    _seriesPointMap.forEach((String key, _AnimatedPoint<D> point) {
+    seriesPointMap.forEach((String key, _AnimatedPoint<D> point) {
       points.add(point.getCurrentPoint(animationPercent));
     });
 

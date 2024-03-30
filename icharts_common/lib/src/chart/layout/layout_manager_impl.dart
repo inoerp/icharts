@@ -172,13 +172,13 @@ class LayoutManagerImpl implements LayoutManager {
   @override
   void measure(int width, int height) {
     var topViews =
-        _viewsForPositions(LayoutPosition.Top, LayoutPosition.FullTop);
+        _viewsForPositions(LayoutPosition.top, LayoutPosition.fullTop);
     var rightViews =
-        _viewsForPositions(LayoutPosition.Right, LayoutPosition.FullRight);
+        _viewsForPositions(LayoutPosition.right, LayoutPosition.fullRight);
     var bottomViews =
-        _viewsForPositions(LayoutPosition.Bottom, LayoutPosition.FullBottom);
+        _viewsForPositions(LayoutPosition.bottom, LayoutPosition.fullBottom);
     var leftViews =
-        _viewsForPositions(LayoutPosition.Left, LayoutPosition.FullLeft);
+        _viewsForPositions(LayoutPosition.left, LayoutPosition.fullLeft);
 
     // Assume the full width and height of the chart is available when measuring
     // for the first time but adjust the maximum if margin spec is set.
@@ -241,14 +241,14 @@ class LayoutManagerImpl implements LayoutManager {
   @override
   void layout(int width, int height) {
     var topViews =
-        _viewsForPositions(LayoutPosition.Top, LayoutPosition.FullTop);
+        _viewsForPositions(LayoutPosition.top, LayoutPosition.fullTop);
     var rightViews =
-        _viewsForPositions(LayoutPosition.Right, LayoutPosition.FullRight);
+        _viewsForPositions(LayoutPosition.right, LayoutPosition.fullRight);
     var bottomViews =
-        _viewsForPositions(LayoutPosition.Bottom, LayoutPosition.FullBottom);
+        _viewsForPositions(LayoutPosition.bottom, LayoutPosition.fullBottom);
     var leftViews =
-        _viewsForPositions(LayoutPosition.Left, LayoutPosition.FullLeft);
-    var drawAreaViews = _viewsForPositions(LayoutPosition.DrawArea);
+        _viewsForPositions(LayoutPosition.left, LayoutPosition.fullLeft);
+    var drawAreaViews = _viewsForPositions(LayoutPosition.drawArea);
 
     final fullBounds = Rectangle(0, 0, width, height);
 
@@ -263,8 +263,9 @@ class LayoutManagerImpl implements LayoutManager {
         .layout(topViews, _measurements.topSizes, fullBounds, drawAreaBounds);
 
     // Layout the drawArea.
-    drawAreaViews.forEach(
-        (LayoutView view) => view.layout(_drawAreaBounds, _drawAreaBounds));
+    for (var view in drawAreaViews) {
+      view.layout(_drawAreaBounds, _drawAreaBounds);
+    }
   }
 
   Iterable<LayoutView> _viewsForPositions(LayoutPosition p1,

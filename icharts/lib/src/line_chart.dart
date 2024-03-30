@@ -33,7 +33,7 @@ import 'selection_model_config.dart' show SelectionModelConfig;
 import 'user_managed_state.dart' show UserManagedState;
 
 class LineChart extends CartesianChart<num> {
-  LineChart(
+  const LineChart(
     List<common.Series<dynamic, num>> seriesList, {
     bool? animate,
     Duration? animationDuration,
@@ -74,7 +74,7 @@ class LineChart extends CartesianChart<num> {
     // Optionally create primary and secondary measure axes if the chart was
     // configured with them. If no axes were configured, then the chart will
     // use its default types (usually a numeric axis).
-    return new common.LineChart(
+    return common.LineChart(
         layoutConfig: layoutConfig?.commonLayoutConfig,
         primaryMeasureAxis: primaryMeasureAxis?.createAxis(),
         secondaryMeasureAxis: secondaryMeasureAxis?.createAxis(),
@@ -85,6 +85,6 @@ class LineChart extends CartesianChart<num> {
   void addDefaultInteractions(List<ChartBehavior> behaviors) {
     super.addDefaultInteractions(behaviors);
 
-    behaviors.add(new LinePointHighlighter<num>());
+    behaviors.add(LinePointHighlighter<num>());
   }
 }

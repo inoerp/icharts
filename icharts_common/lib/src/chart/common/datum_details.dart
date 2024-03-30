@@ -238,7 +238,7 @@ class DatumDetails<D> {
   }
 
   String get formattedDomain =>
-      (domainFormatter != null) ? domainFormatter!(domain!) : domain.toString();
+      (domainFormatter != null) ? domainFormatter!(domain as D) : domain.toString();
 
   String get formattedMeasure => (measureFormatter != null)
       ? measureFormatter!(measure)

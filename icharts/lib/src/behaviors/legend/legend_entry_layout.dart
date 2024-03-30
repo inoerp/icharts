@@ -86,7 +86,7 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
     final rowChildren = <Widget>[];
 
     // TODO: Allow setting to configure the padding.
-    const padding = const EdgeInsets.only(right: 8.0); // Material default.
+    const padding = EdgeInsets.only(right: 8.0); // Material default.
     final symbol = createSymbol(context, legendEntry, legend, isHidden);
     final label = createLabel(context, legendEntry, legend, isHidden);
 
@@ -113,10 +113,12 @@ class SimpleLegendEntryLayout implements LegendEntryLayout {
     };
   }
 
+  @override
   bool operator ==(Object other) => other is SimpleLegendEntryLayout;
 
+  @override
   int get hashCode {
-    return this.runtimeType.hashCode;
+    return runtimeType.hashCode;
   }
 
   /// Convert the charts common TextStlyeSpec into a standard TextStyle, while

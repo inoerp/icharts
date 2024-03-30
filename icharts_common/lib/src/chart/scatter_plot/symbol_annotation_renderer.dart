@@ -80,7 +80,7 @@ class SymbolAnnotationRenderer<D> extends PointRenderer<D>
 
     var offset = 0.0;
 
-    seriesList.forEach((series) {
+    for (var series in seriesList) {
       final seriesKey = series.id;
 
       // Default to the configured radius if none was defined by the series.
@@ -124,7 +124,7 @@ class SymbolAnnotationRenderer<D> extends PointRenderer<D>
       );
 
       offset += rowHeight;
-    });
+    }
 
     _currentHeight = offset.ceil();
 
@@ -227,7 +227,7 @@ class SymbolAnnotationRenderer<D> extends PointRenderer<D>
   LayoutViewConfig get layoutConfig {
     return LayoutViewConfig(
         paintOrder: LayoutViewPaintOrder.point,
-        position: LayoutPosition.Bottom,
+        position: LayoutPosition.bottom,
         positionOrder: LayoutViewPositionOrder.symbolAnnotation);
   }
 

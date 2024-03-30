@@ -200,8 +200,8 @@ abstract class KeyboardDomainNavigator<D> implements ChartBehavior<D> {
   int _getActiveHoverDomainIndex() {
     // If enter is pressed before an arrow key, we don't have any selection
     // domains available. Bail out.
-    final _domains = this._domains;
-    if (_domains == null || _domains.isEmpty) {
+    final domains = _domains;
+    if (domains == null || domains.isEmpty) {
       return NO_SELECTION;
     }
 
@@ -219,15 +219,15 @@ abstract class KeyboardDomainNavigator<D> implements ChartBehavior<D> {
 
     // If the currentIndex is the same as the firstSelectedDetail we don't have
     // to do a linear seach to find the domain.
-    final firstDomain = details.first.domain!;
+    final firstDomain = details.first.domain as D;
 
     if (0 <= _currentIndex &&
-        _currentIndex <= _domains.length - 1 &&
-        _domains[_currentIndex] == firstDomain) {
+        _currentIndex <= domains.length - 1 &&
+        domains[_currentIndex] == firstDomain) {
       return _currentIndex;
     }
 
-    return _domains.indexOf(firstDomain);
+    return domains.indexOf(firstDomain);
   }
 
   /// Processes chart data and generates a mapping of domain index to datum
@@ -265,7 +265,7 @@ abstract class KeyboardDomainNavigator<D> implements ChartBehavior<D> {
       // all data after a datum with null measure not accessible by keyboard.
       // LINT.IfChange
       if (datumDetails.measure != null) {
-        final domain = datumDetails.domain!;
+        final domain = datumDetails.domain as D;
 
         if (detailsByDomain[domain] == null) {
           _domains!.add(domain);

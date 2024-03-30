@@ -12,7 +12,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import 'dart:collection' show LinkedHashMap;
 
 import '../chart/common/chart_canvas.dart';
 import '../common/color.dart';
@@ -192,7 +191,7 @@ List<Node<N, L>> convertGraphNodes<N, L, D>(
   List<Node<N, L>> graphNodes = [];
   var graphLinks = convertGraphLinks(links, sourceFn, targetFn);
   var nodeClassDomainFn = actOnNodeData<N, L, D>(nodeDomainFn)!;
-  var nodeMap = LinkedHashMap<D, Node<N, L>>();
+  var nodeMap = <D, Node<N, L>>{};
 
   // Populate nodeMap with user provided nodes
   for (var node in nodes) {
