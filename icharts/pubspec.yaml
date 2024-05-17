@@ -4,7 +4,6 @@ description: Material Design charting library for flutter.
   Forked from google/charts and updated to the latest SDK and packages.
   Some charts have been modified for large-screen display.
 homepage: https://github.com/inoerp/icharts
-publish_to: 'none'
 
 environment:
   sdk: ">=2.17.1 <3.0.0"
@@ -20,8 +19,7 @@ dependencies:
   intl: ^0.19.0
   logging: ^1.0.2
   meta: ^1.1.1
-  icharts_common:
-    path: '../icharts_common'
+  icharts_common: ^0.13.5
 
 
 

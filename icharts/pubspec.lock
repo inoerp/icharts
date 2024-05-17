@@ -259,9 +259,10 @@ packages:
   icharts_common:
     dependency: "direct main"
     description:
-      path: "../icharts_common"
-      relative: true
-    source: path
+      name: icharts_common
+      sha256: "9f053a855f0a450d098c73f9d2feb006811a797298e25779256a8bea16fce84b"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.13.5"
   intl:
     dependency: "direct main"
